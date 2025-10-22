@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building Maintenance</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+<!-- Navbar -->
+<nav class="bg-white shadow p-4 flex flex-col md:flex-row md:justify-between md:items-center relative">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-600">Power Building Services PTE LTD</h1>
+
+    <!-- Hamburger button (visible on small screens) -->
+    <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu -->
+  <div id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-6 mt-2 md:mt-0 space-y-2 md:space-y-0">
+    <a href="#" data-page="home" class="nav-link hover:text-blue-500">Home</a>
+    <a href="#" data-page="services" class="nav-link hover:text-blue-500">Services</a>
+    <a href="#" data-page="appointment" class="nav-link hover:text-blue-500">Book Appointment</a>
+    <a href="#" data-page="contact" class="nav-link hover:text-blue-500">Contact</a>
+  </div>
+</nav>
+
+<!-- Pages -->
+<main class="flex-grow p-4 md:p-6 max-w-4xl mx-auto w-full">
+
+  <!-- Home -->
+  <div id="home" class="page">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4 text-center md:text-left">Welcome to Power Building Services PTE LTD</h2>
+    <p class="mb-4 text-center md:text-left">We provide building maintenance services including electrical, plumbing, and drainage solutions.</p>
+    <div class="flex justify-center md:justify-start">
+      <button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700" data-page="appointment">Book an Appointment</button>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div id="services" class="page hidden">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4 text-center md:text-left">Our Services</h2>
+    <ul class="list-disc pl-5 space-y-2 text-center md:text-left">
+      <li>Electrical Maintenance</li>
+      <li>Plumbing Services</li>
+      <li>Drainage Solutions</li>
+      <li>General Building Maintenance</li>
+    </ul>
+  </div>
+
+  <!-- Appointment -->
+  <div id="appointment" class="page hidden">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4 text-center md:text-left">Book an Appointment</h2>
+    <form id="appointmentForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Full Name" class="w-full border p-3 rounded focus:ring focus:ring-blue-200" required>
+      <input type="email" id="email" placeholder="Email" class="w-full border p-3 rounded focus:ring focus:ring-blue-200" required>
+      <input type="tel" id="phone" placeholder="Phone" class="w-full border p-3 rounded focus:ring focus:ring-blue-200" required>
+      <select id="service" class="w-full border p-3 rounded focus:ring focus:ring-blue-200" required>
+        <option value="" disabled selected>Select a service</option>
+        <option value="electrical">Electrical</option>
+        <option value="plumbing">Plumbing</option>
+        <option value="drainage">Drainage</option>
+        <option value="other">Other</option>
+      </select>
+      <input type="date" id="date" class="w-full border p-3 rounded focus:ring focus:ring-blue-200" required>
+      <textarea id="message" rows="4" placeholder="Additional details" class="w-full border p-3 rounded focus:ring focus:ring-blue-200"></textarea>
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition-colors">Submit</button>
+    </form>
+  </div>
+
+  <!-- Contact -->
+  <div id="contact" class="page hidden">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4 text-center md:text-left">Contact Us</h2>
+    <div class="space-y-2 text-center md:text-left">
+      <p>Email: contact@yahoo.com</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Address: Chennai, Tamil Nadu, India</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white text-center p-4 mt-auto">
+  &copy; 2025 Power Building Services PTE LTD. All rights reserved.
+</footer>
+
+<!-- jQuery SPA + Hamburger logic -->
+<script>
+$(document).ready(function() {
+  // Show page
+  function showPage(pageId) {
+    $('.page').addClass('hidden');
+    $('#' + pageId).removeClass('hidden');
+  }
+
+  showPage('home'); // default
+
+  // Nav & buttons
+  $('.nav-link, button[data-page]').click(function(e) {
+    e.preventDefault();
+    const page = $(this).data('page');
+    showPage(page);
+
+    // Close menu on mobile after click
+    if($('#menu').is(':visible') && $(window).width() < 768) {
+      $('#menu').slideUp();
+    }
+  });
+
+  // Hamburger toggle
+  $('#menu-btn').click(function() {
+    $('#menu').slideToggle();
+  });
+
+  // Appointment form
+  $('#appointmentForm').submit(function(e) {
+    e.preventDefault();
+    const name = $('#name').val();
+    const service = $('#service').val();
+    const date = $('#date').val();
+
+    if(!name || !service || !date) {
+      alert('Please fill all required fields!');
+      return;
+    }
+
+    alert(`Thank you ${name}! Your appointment for ${service} on ${date} has been booked.`);
+    $(this)[0].reset();
+    showPage('home');
+  });
+});
+</script>
+
+</body>
+</html>
