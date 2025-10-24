@@ -10,31 +10,25 @@
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
 <!-- Navbar -->
-<nav class="bg-white shadow p-4 flex flex-col md:flex-row md:justify-between md:items-center relative">
+<nav class="bg-white shadow p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center relative">
   <div class="flex justify-between items-center">
     <h1 class="text-2xl font-bold text-blue-600">Power Building Services PTE LTD</h1>
-
-    <!-- Hamburger button (visible on small screens) -->
     <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </div>
-
-  <!-- Menu -->
   <div id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-6 mt-2 md:mt-0 space-y-2 md:space-y-0">
-    <a href="#" data-page="home" class="nav-link hover:text-blue-500">Home</a>
-    <a href="#" data-page="services" class="nav-link hover:text-blue-500">Services</a>
-    <a href="#" data-page="appointment" class="nav-link hover:text-blue-500">Book Appointment</a>
-    <a href="#" data-page="contact" class="nav-link hover:text-blue-500">Contact</a>
+    <a href="#" data-page="home" class="nav-link hover:text-blue-500 block">Home</a>
+    <a href="#" data-page="services" class="nav-link hover:text-blue-500 block">Services</a>
+    <a href="#" data-page="appointment" class="nav-link hover:text-blue-500 block">Book Appointment</a>
+    <a href="#" data-page="contact" class="nav-link hover:text-blue-500 block">Contact</a>
   </div>
 </nav>
 
 <!-- Pages -->
 <main class="flex-grow p-4 md:p-6 max-w-4xl mx-auto w-full">
-
   <!-- Home -->
   <div id="home" class="page">
     <h2 class="text-3xl font-bold text-blue-600 mb-4 text-center md:text-left">Welcome to Power Building Services PTE LTD</h2>
@@ -84,7 +78,6 @@
       <p>Address: Chennai, Tamil Nadu, India</p>
     </div>
   </div>
-
 </main>
 
 <!-- Footer -->
